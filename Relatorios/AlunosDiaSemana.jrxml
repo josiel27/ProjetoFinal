@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8bd84642-02cc-4caf-b98a-af0d8fd790c0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="AlunosPorDia" uuid="5a30a2b1-4a49-4b68-9311-171722c8f547">
+		<queryString language="SQL">
+			<![CDATA[SELECT TP.cod_turma_periodo, H.cod_turma_periodo, H.dia FROM tb_horario H
+INNER JOIN rl_turma_periodo TP
+ON TP.cod_turma_periodo = H.cod_turma_periodo]]>
+		</queryString>
+		<field name="cod_turma_periodo" class="java.lang.Integer"/>
+		<field name="dia" class="java.lang.String"/>
+		<group name="cod_turma_periodo">
+			<groupExpression><![CDATA[$F{cod_turma_periodo}]]></groupExpression>
+		</group>
+		<group name="dia">
+			<groupExpression><![CDATA[$F{dia}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT TP.cod_turma_periodo, H.cod_turma_periodo, H.dia FROM tb_horario H
+INNER JOIN rl_turma_periodo TP
+ON TP.cod_turma_periodo = H.cod_turma_periodo]]>
+	</queryString>
+	<field name="cod_turma_periodo" class="java.lang.Integer"/>
+	<field name="dia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" forecolor="#F0F0F0" backcolor="#E3E3E3" uuid="b866a959-9342-4252-9175-4ec1bb98e428"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="27" y="17" width="379" height="45" uuid="aa4e7c5c-52ed-4c9e-9445-ad2fc3cbf37a"/>
+				<textElement>
+					<font fontName="Arial" size="30" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Instituto de Música Banzo's]]></text>
+			</staticText>
+			<image>
+				<reportElement x="476" y="0" width="79" height="79" uuid="ca2a81c2-68e9-4c57-9529-b7ae814f9ecf"/>
+				<imageExpression><![CDATA["G:\\Projeto Final II\\PROTOTIPO FUNCIONAL\\ProjetoFinalII\\src\\Imagens\\icon_banzos_500x500.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="50" uuid="7274ad00-2566-4ad6-bdfc-8e1525c64904"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[Relatório de alunos matriculados por dia da semana]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="401" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement mode="Transparent" x="0" y="0" width="555" height="401" forecolor="#000000" backcolor="#00CC33" uuid="6d75443f-800a-4943-aed9-59f413a028c7"/>
+					<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+					<chartTitle color="#000000"/>
+					<chartSubtitle color="#0066FF"/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="AlunosPorDia" uuid="557d7915-9575-4307-b3b2-4c6520341985"/>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Gráfico de alunos matriculados por dia da semana"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{dia}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cod_turma_periodo}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

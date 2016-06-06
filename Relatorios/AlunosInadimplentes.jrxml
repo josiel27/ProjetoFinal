@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df3dfeb4-da7d-46f7-90bf-2964574f639a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT A.matricula, A.nome, SP.situacao_pagamento, SP.qtd_mensalidade_pendente, SP.mes_pendente, SP.dias_atraso, SP.valor
+FROM tb_aluno A 
+Inner Join tb_situacao_pagamento SP 
+ON A.matricula = SP.matricula
+WHERE situacao_pagamento = 'Inadimplente']]>
+	</queryString>
+	<field name="matricula" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="situacao_pagamento" class="java.lang.String"/>
+	<field name="qtd_mensalidade_pendente" class="java.lang.Integer"/>
+	<field name="mes_pendente" class="java.lang.String"/>
+	<field name="dias_atraso" class="java.lang.Integer"/>
+	<field name="valor" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" forecolor="#F0F0F0" backcolor="#E3E3E3" uuid="71356458-ea6a-4723-8033-08c01f4c9694"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="27" y="17" width="379" height="45" uuid="270ddc35-8430-4d0c-ba26-3e7baeed1328"/>
+				<textElement>
+					<font fontName="Arial" size="30"/>
+				</textElement>
+				<text><![CDATA[Instituto de Música Banzo's]]></text>
+			</staticText>
+			<image>
+				<reportElement x="476" y="0" width="79" height="79" uuid="99739346-6d94-45cd-9129-d6a20d9b16ac"/>
+				<imageExpression><![CDATA["G:\\Projeto Final II\\PROTOTIPO FUNCIONAL\\ProjetoFinalII\\src\\Imagens\\icon_banzos_500x500.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="35" uuid="2dadd2a0-88b6-401e-8791-df14805dc006"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[Relatório de Alunos Inadimplentes]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="57" height="39" uuid="3029f1b8-f58a-4a9f-b21f-bbf0e3b8b8e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="89ff71d1-3333-4630-bc34-f66d3d6c9969"/>
+			</line>
+			<line>
+				<reportElement x="0" y="39" width="555" height="1" uuid="b80e2fdf-7bbb-45c7-99e9-9b83f36e6f4e"/>
+			</line>
+			<staticText>
+				<reportElement x="57" y="1" width="79" height="38" uuid="10d72b0a-94ad-4672-a8cf-c47a84fcec41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="85" height="39" uuid="63aebf86-d56b-4944-9f56-d53f4117e4a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Situação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="0" width="88" height="40" uuid="c348f47b-61f7-4eda-a979-c95a531587a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Mensalidadees pendetens]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="0" width="58" height="40" uuid="20e5d633-9aaa-4b1c-906f-52a16ad5dc4e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Valor total R$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-268" y="18" width="58" height="21" uuid="9deef5d4-33ee-4b15-979a-0854a4c66098"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+			</textField>
+			<staticText>
+				<reportElement x="439" y="1" width="57" height="40" uuid="5f2b2405-82ea-4135-9060-3d756d15ab91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Dias em atraso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="2" width="107" height="38" uuid="4483a31e-7be8-4fa2-a401-a6a25d8b650f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meses pendentes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="69" y="1" width="100" height="20" uuid="af3a85ce-cf27-489a-83bc-bb902d27dc71"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="aacfa680-e04a-41df-98f6-cb0c7daa42fb"/>
+			</line>
+			<textField>
+				<reportElement x="286" y="1" width="32" height="20" uuid="ae633e1b-ef37-47a6-82cc-927001b9259c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtd_mensalidade_pendente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="2" width="75" height="19" uuid="2947a20d-cc2e-46b6-a3c2-839a422cf0e9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{situacao_pagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="44" height="21" uuid="b2cb5cd8-bb75-496c-b6bb-f832aa56411e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="2" width="58" height="21" uuid="b6756e12-5ef4-4c05-85d4-c84f404f9cf6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="3" width="107" height="20" uuid="0b5a1c83-1e69-4af5-aa9d-9a0c66e8f569"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes_pendente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="0" width="57" height="21" uuid="2222e063-8cc6-4f3f-a653-de3de4b52333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dias_atraso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="60" splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="37">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="37" forecolor="#F0F0F0" backcolor="#E3E3E3" uuid="143b6d7e-099a-4d2d-9e7d-747b746c26ed"/>
+			</rectangle>
+			<textField>
+				<reportElement x="527" y="0" width="28" height="37" uuid="2305b8c4-41fb-47f3-afda-8f1adbf91f68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

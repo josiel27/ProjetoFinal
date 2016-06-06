@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c575cdf-1cdf-4671-81f5-8abb5bcb07ff">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="AlunosDiaSemana" uuid="8103d1d9-f380-4c85-be63-0bf8af6bd053">
+		<queryString language="SQL">
+			<![CDATA[SELECT H.dia AS Dia_Semana, COUNT(TA.matricula) AS Qdt_Alunos 
+FROM rl_aluno_turma TA
+INNER JOIN rl_turma_periodo TP
+ON TA.cod_turma_periodo = TP.cod_turma_periodo 
+INNER JOIN tb_horario H
+ON TA.cod_turma_periodo = H.cod_turma_periodo   
+WHERE TP.ano = 2016 AND TP.semestre = 1
+GROUP BY H.dia ]]>
+		</queryString>
+		<field name="dia_semana" class="java.lang.String"/>
+		<field name="qdt_alunos" class="java.lang.Long"/>
+		<group name="dia_semana">
+			<groupExpression><![CDATA[$F{dia_semana}]]></groupExpression>
+		</group>
+		<group name="qdt_alunos">
+			<groupExpression><![CDATA[$F{qdt_alunos}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT H.dia AS Dia_Semana, COUNT(TA.matricula) AS Qdt_Alunos 
+FROM rl_aluno_turma TA
+INNER JOIN rl_turma_periodo TP
+ON TA.cod_turma_periodo = TP.cod_turma_periodo 
+INNER JOIN tb_horario H
+ON TA.cod_turma_periodo = H.cod_turma_periodo   
+WHERE TP.ano = 2016 AND TP.semestre = 1
+GROUP BY H.dia ]]>
+	</queryString>
+	<field name="dia_semana" class="java.lang.String"/>
+	<field name="qdt_alunos" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="286" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="298" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="67" y="0" width="358" height="259" uuid="9ba78e22-75e0-45db-bf87-d78bf4a512c6"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset>
+						<datasetRun subDataset="AlunosDiaSemana" uuid="a4a8fdf4-da94-43f6-9cff-dfd9152eff30"/>
+					</dataset>
+					<keyExpression><![CDATA[$F{dia_semana}]]></keyExpression>
+					<valueExpression><![CDATA[$F{qdt_alunos}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
